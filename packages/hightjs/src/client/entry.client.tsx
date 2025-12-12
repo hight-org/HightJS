@@ -61,7 +61,7 @@ function App({ componentMap, routes, initialComponentPath, initialParams, layout
     // Inicializa o componente e params baseado na URL ATUAL (não no initialComponentPath)
     const [CurrentPageComponent, setCurrentPageComponent] = useState(() => {
         // Pega a rota atual da URL
-        const currentPath = window.location.pathname;
+        const currentPath = window.location.pathname.replace("index.html", '');
         const match = findRouteForPath(currentPath);
 
         if (match) {
@@ -74,7 +74,7 @@ function App({ componentMap, routes, initialComponentPath, initialParams, layout
 
     const [params, setParams] = useState(() => {
         // Pega os params da URL atual
-        const currentPath = window.location.pathname;
+        const currentPath = window.location.pathname.replace("index.html", '');
         const match = findRouteForPath(currentPath);
         return match ? match.params : {};
     });
@@ -147,7 +147,7 @@ function App({ componentMap, routes, initialComponentPath, initialParams, layout
 
 
     const updateRoute = useCallback(() => {
-        const currentPath = router.pathname;
+        const currentPath = router.pathname.replace("index.html", '');
         const match = findRouteForPath(currentPath);
         if (match) {
             setCurrentPageComponent(() => componentMap[match.componentPath]);
